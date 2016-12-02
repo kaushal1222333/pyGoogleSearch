@@ -54,3 +54,20 @@ Things I might do in time:
 * 'Maybe' add a Tkinter GUI interface to it over time - seems a bit small for a GUI as it is but I may do it for practice
 
 
+NOTE
+-----
+I did add a GUI version about an hour after creating the original code and repo. I used Tkinter for convenience, and the GUI prompts the user to enter a search word (something to search for on google) then it uses the same function from the text version, with adjustments to the input method. So I used the entrybox this time and StringVar to play with the input
+
+The function behaves the same really - it takes a string from from the user, and joins it onto the unfinished Google search query URL, so whatever is entered gets joined to the URL directly.
+
+The function is linked to the Button to get the results...what I did was have the full URL of the page display in the lower section (Label) and have a time delay of about a second before loading the browser. Then the browser opens up with the search results.
+
+I did this quite quickly so it may be rough around the edges.
+
+At the time of writing I plan to put the whole thing into a class, and maybe have a reset or restart function.
+
+It is normally common practice for me to put QUIT buttons into my TKinter apps, but on my Windows system (used to write this) the quit function causes a crash no matter what I use it on...so you will have to use the [X] at the top right of the window.(This isn't a problem on my other systems - Ubuntu and Raspbian)
+
+I want to keep the GUI and text versions completely seperate, because I would love for the text one to end up as a module - even if it's just for my own use!
+
+
