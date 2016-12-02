@@ -41,7 +41,7 @@ This is the first rough draft at this, I had imagined this being a handy tool to
 
 I put it into a function for convenience, I hope to add the argument ability to it - so you could just go:
 
-    pyGoogleSearch(Python)
+    pyGoogleSearch(Anything)
 
 With one line/command to run a search from Python and show a search results page in a web Browser
 
@@ -56,7 +56,9 @@ Things I might do in time:
 
 NOTE
 -----
-I did add a GUI version about an hour after creating the original code and repo. I used Tkinter for convenience, and the GUI prompts the user to enter a search word (something to search for on google) then it uses the same function from the text version, with adjustments to the input method. So I used the entrybox this time and StringVar to play with the input
+I did add a GUI version about an hour after creating the original code and repo. I used Tkinter for convenience. The GUI prompts the user to enter a search word (something to search for on google) then it uses the same function from the text version, with adjustments to the input method to perform the task of opening a search results page for the input word. 
+
+I used the entrybox this time and StringVar() to play with the input/strings
 
 The function behaves the same really - it takes a string from from the user, and joins it onto the unfinished Google search query URL, so whatever is entered gets joined to the URL directly.
 
