@@ -49,8 +49,55 @@ Heres my plain version of this - I had to use raw_input() for python 3 and just 
 
     pyGoogleSearch()
     
+And here is the GUI version I added later on - Written in Tkinter, and i used my Tkinter GUI - Application Class Template. It is form another one of my repositories - I have done a few little Tk GUI apps and eventually came up with a template to save time when starting a project - over time I learnt about using classes in an object oriented style of programming and from then on wrote my Tk apps into a class. So the template is a basic GUI setup that creates a  window, with a Container Frame inside. Then I put all of the child widgets within this frame. So all I did was use my class template, and then edit the plain Python versions function to work with SringVar() mand an entry box rather than the input() or raw_input()...here it is:
 
-This is the first rough draft at this, I had imagined this being a handy tool to be able to import from any python session and use to search something quickly with 2 lines...an import(which runs the program)...then a search word. I liked that no additional modules are needed, it sums up the power of Python - being able to do a lot with a little.
+    #!usr/bin/env python
+    import Tkinter
+    from Tkinter import *
+    import webbrowser
+    import time
+
+    # I put everything into this class
+    class App():
+        def __init__(self, master):
+            # Function to handle string concatenation and search
+            def doTheSearch():
+                address = 'http://www.google.com/#q='
+                word = cvt_from.get()
+                newWord = address + word
+                cvt_to.set(newWord)
+                time.sleep(1.5)
+                webbrowser.open(newWord)
+
+            # Used to take text from entrybox 
+            cvt_to = StringVar()
+            # And display the new string to the label
+            cvt_from = StringVar()
+
+            # Container Frame / Parent Widget
+            frame = Frame(master)
+            # Child Widgets
+            frame.pack()
+            lbl_one = Label(master, bg='Grey', fg='Blue', font='freesansbold, 11', text='\nEnter your Search below \n\nNOTE: If you have multiple words \nuse the (+) symbol to join them. \neg: Words+Like+This\n\n')
+            lbl_one.pack()
+            ent_one = Entry(master, width=30, textvariable=cvt_from, justify='center', font='freesansbold, 14')
+            ent_one.pack()
+            btn_two = Button(master, bg='DarkGray', fg='Blue', font='freesansbold,14', text='Go to search results', command=doTheSearch )
+            btn_two.pack()
+            lbl_two = Label(master, textvariable=cvt_to, bg='DarkGray', relief='ridge')
+            lbl_two.pack(fill=BOTH, expand=True)
+
+    # Main config settings for GUI
+    root = Tk()
+    app = App(root)
+    root.title('Python Google Search')
+    root.minsize(350,350)
+    root.configure(bg='Gray')
+    # Magical mainloop
+    root.mainloop()
+
+
+This is the first rough draft at this, and it seems to work well - at least it does what I wanted it to do. I had imagined this being a handy tool to be able to import from any python session and use to search something quickly with 2 lines...an import(which runs the program)...then a search word. I liked that no additional modules are needed, it sums up the power of Python - being able to do a lot with a little.
 
 I put it into a function for convenience, I hope to add the argument ability to it - so you could just go:
 
@@ -98,7 +145,17 @@ and it looks like this:
     if __name__ == '__main__':
         main()
 
+You see how they did their query section of the address a little different to mine, perhaps this is a more reliable way to do it, I don't know. The way I found my method was by opening a google.com search page, entering a search query (the word Python for example), and making a note of how the address in the address bar changed as I clicked search. I found it adds the usual forward slash to an address extension (/) then #q=Python.
+
+So mine uses: 
+
+    http://google.com/#q=Python
+
+The Python google script uses this method: 
+
+    http://google.com/search?q=Python
     
+The python one uses string formatting to combine the search string with the uncompleted address - although my first version didn't use string formatting (it just joins/concatenates the 2 strings together to form one) I was very happy when I saw the Python way used the same idea as I came up with...this is the great feeling of progress when learning!
 
 NOTE
 -----
