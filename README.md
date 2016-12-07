@@ -34,8 +34,21 @@ http://google.com/#q=
 
 Then all I had to do was take input from the user (asking what to search for) then concatenate/join the 2 strings together to create a new variable called newAddress. The newAddress gets given to the webbrowser.open command.
 
-The 2 strings together make the full address for a google search results page, for whatever the user enters.
+The 2 strings together make the full address for a google search results page, for whatever the user enters. 
 
+Heres my plain version of this - I had to use raw_input() for python 3 and just input():
+
+    import webbrowser
+
+    def pyGoogleSearch():
+        address = 'http://www.google.com/#q='
+        word = raw_input('Enter a word: \n>>> ')
+        newWord = address + word
+        print'Opening: ', newWord
+        webbrowser.open(newWord)
+
+    pyGoogleSearch()
+    
 
 This is the first rough draft at this, I had imagined this being a handy tool to be able to import from any python session and use to search something quickly with 2 lines...an import(which runs the program)...then a search word. I liked that no additional modules are needed, it sums up the power of Python - being able to do a lot with a little.
 
@@ -53,6 +66,39 @@ Things I might do in time:
 * Make it functional as an importable module
 * 'Maybe' add a Tkinter GUI interface to it over time - seems a bit small for a GUI as it is but I may do it for practice
 
+
+Update (07/12/2016) Python has something similar:
+------------------------------
+I was looking through the scripts that come with Python and theres a few handy little tools built in. Python does have a google script as-well, a little bit more complex than mine, If you want to have  a look, I found it in Python 3's files on a Windows System. I haven't looked on Ubuntu or Raspbian so I caouldn't tell you the location of Python's folder without looking it up.
+
+On Windows look in your main C: directory and look for Python34:
+C:\Python34\Tools\Scripts\google.py 
+and it looks like this:
+
+    #! /usr/bin/env python3
+    import sys, webbrowser
+
+    def main():
+        args = sys.argv[1:]
+        if not args:
+            print("Usage: %s querystring" % sys.argv[0])
+            return
+        list = []
+        for arg in args:
+            if '+' in arg:
+                arg = arg.replace('+', '%2B')
+            if ' ' in arg:
+                arg = '"%s"' % arg
+            arg = arg.replace(' ', '+')
+            list.append(arg)
+        s = '+'.join(list)
+        url = "http://www.google.com/search?q=%s" % s
+        webbrowser.open(url)
+
+    if __name__ == '__main__':
+        main()
+
+    
 
 NOTE
 -----
